@@ -16,28 +16,40 @@ class Enemy(object):
 MONSTERS_KANALY = {
     "NORMAL": [
         {
-            "name": "goblin",
+            "name": "Goblin",
             "health": 20,
             "strenght": 14,
             "defence": 2,
             "loot_list": [0, 1, 2, 3],
-            "money": 20
+            "money": 5
+            #money = random.randint(1, 3)
         },
         {
-            "name": "rat",
-            "health": 30,
-            "strenght": 4,
+            "name": "Szczur",
+            "health": 10,
+            "strenght": 12,
             "defence": 0,
-            "loot_list": [0],
+            "loot_list": [0, 3, 4],
             "money": 5
+            #money = random.randint(0, 2)
         },
         {
-            "name": "rat",
-            "health": 30,
-            "strenght": 4,
-            "defence": 0,
-            "loot_list": [0],
+            "name": "Pająk",
+            "health": 20,
+            "strenght": 13,
+            "defence": 1,
+            "loot_list": [0, 3],
             "money": 5
+            #money = random.randint(0, 3)
+        },
+        {
+            "name": "Duży Szczur",
+            "health": 25,
+            "strenght": 15,
+            "defence": 2,
+            "loot_list": [0, 3, 4],
+            "money": 5
+            #money = random.randint(0, 6)
         }
     ],
     "BOSS": [
@@ -47,7 +59,50 @@ MONSTERS_KANALY = {
             "strenght": 30,
             "defence": 15,
             "loot_list": [5],
-            "money": 20
+            "money": 10
+        }
+    ]
+}
+
+MONSTERS_MROCZNY_LAS = {
+    "NORMAL": [
+        {
+            "name": "Duży Pająk",
+            "health": 50,
+            "strenght": 30,
+            "defence": 10,
+            "loot_list": [0, 3, 4],
+            "money": 10
+            #money = random.randint(0, 10)
+        },
+        {
+            "name": "Wilk",
+            "health": 70,
+            "strenght": 45,
+            "defence": 8,
+            "loot_list": [3, 4],
+            "money": 14
+            #money = random.randint(0, 14)
+        },
+        {
+            "name": "Ogromna Żaba",
+            "health": 100,
+            "strenght": 30,
+            "defence": 12,
+            "loot_list": [0, 3, 4],
+            "money": 13
+            #money = random.randint(0, 13)
+        }
+    ],
+    "BOSS": [
+        {
+            "name": "WILCZY KRÓL",
+            "health": 350,
+            "strenght": 70,
+            "defence": 20,
+            "loot_list": [8],
+            "money": 13
+            # money = random.randint(0, 13)
         }
     ]
 }
@@ -60,108 +115,6 @@ def select_enemy(MONSTERS):
         return random.choice(MONSTERS['NORMAL'])
 
 # loot = ["mikstura", "oręż treningowy", "zbroja treningowa", "śmieć", "kawałek futra", "szczurza korona", "słaby oręż", "słaba zbroja", "srebrny kieł"]
-# z money coś nie działa, trzeba ustawiać w RPG i tam w liscie mobków
-
-######## Przeciwnicy z kanałów
-class goblin(object):
-    name = "Goblin"
-
-    #money = random.randint(0, 5)
-
-class rat(object):
-    name = "Szczur"
-    health = 10
-    strenght = 12
-    defence = 0
-    loot_list = [0, 3, 4]
-    loot = random.choice(loot_list)
-    money = 20
-    #money = random.randint(0, 2)
-
-class spider(object):
-    name = "Pająk"
-    health = 20
-    strenght = 13
-    defence = 1
-    loot_list = [0, 3]
-    loot = random.choice(loot_list)
-    money = 20
-    #money = random.randint(0, 3)
-
-class big_rat(object):
-    name = "Duży Szczur"
-    health = 25
-    strenght = 15
-    defence = 2
-    loot_list = [0, 3, 4]
-    loot = random.choice(loot_list)
-    money = 20
-    #money = random.randint(0, 6)
-
-class rat_king(object):
-    name = "KRÓL SZCZURÓW"
-    health = 150
-    strenght = 30
-    defence = 15
-    loot_list = [5]
-    loot = random.choice(loot_list)
-    money = 20
-
-
-
-def enemy_kanaly(goblin, rat, spider, big_rat, rat_king):
-    enemyList = [goblin, rat, spider, big_rat, rat_king]
-    boss_chance = random.randint(0, 100)
-    if boss_chance > 97:
-        chance = 4
-        enemy = enemyList[chance]
-    else:
-        chance = random.randint(0, 3)
-        enemy = enemyList[chance]
-    return enemy
-
-
-
-########## morczny las
-class big_spider(object):
-    name = "Duży pająk"
-    health = 50
-    strenght = 30
-    defence = 10
-    loot_list = [0, 3, 4]
-    loot = random.choice(loot_list)
-    #money = random.randint(0, 10)
-
-class wolf(object):
-    name = "Wilk"
-    health = 70
-    strenght = 45
-    defence = 8
-    loot_list = [3, 4]
-    loot = random.choice(loot_list)
-    #money = random.randint(0, 14)
-
-class gigantic_frog(object):
-    name = "Ogromna żaba"
-    health = 100
-    strenght = 30
-    defence = 12
-    loot_list = [0, 3, 4]
-    loot = random.choice(loot_list)
-    #money = random.randint(0, 13)
-
-class wolf_king(object):
-    name = "WILCZY KRÓL"
-    health = 350
-    strenght = 70
-    defence = 20
-    loot_list = [8]
-    loot = random.choice(loot_list)
-    # money = random.randint(0, 13)
-
-
-
-
 
 
 ########## jaskinia nieopodal miasta
@@ -189,11 +142,6 @@ class troll(object):
     loot = random.randint(20, 30)
     money = random.randint(10, 30)
 
-def enemy_jaskinia_nieopodal_miasta(bear, black_bear, troll):
-    enemyList = [bear, black_bear, troll]
-    chance = random.randint(0,2)
-    enemy = enemyList[chance]
-    return enemy
 
 
 
@@ -221,12 +169,6 @@ class bad_guy(object):
     defence = 15
     loot = random.randint(30, 45)
     money = random.randint(10, 45)
-
-def enemy_oboz_bandytow(bandit, psycho, bad_guy):
-    enemyList = [bandit, psycho, bad_guy]
-    chance = random.randint(0,2)
-    enemy = enemyList[chance]
-    return enemy
 
 
 

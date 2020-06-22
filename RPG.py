@@ -341,11 +341,11 @@ def kanaly(score):
                     print(lootDrop)
                     lootEffect(lootDrop, character)
                     print("%s%sotrzymałeś przedmioty o równowartości%s" %(fg(11), bg(232), attr(0)), enemy.money, "%s%smonet%s" %(fg(11), bg(232), attr(0)))
+                    character.cash += enemy.money
                     print("%s%smasz aktualnie%s" %(fg(11), bg(232), attr(0)), character.cash, "%s%smonet%s\n" %(fg(11), bg(232), attr(0)))
                     kanaly(score)
                     return score
-                    #return print("masz aktualnie", score, "punktów doświadczenia")
-                    #break
+
             else:
                 print("%s%sNie trafiłeś swojego przeciwnika%s" %(fg(1), bg(232), attr(0)))
                 print(enemy.name, end = " ")
@@ -380,32 +380,6 @@ def kanaly(score):
                     gameOver(character, score)
 
                 else:
-                    if enemy.name == "Goblin":
-                        enemy.health = 20
-                        score = score + 10
-                        enemy.money = random.randint(0, 5)
-                        character.cash = character.cash + enemy.money
-                    elif enemy.name == "Szczur":
-                        enemy.health = 10
-                        score = score + 5
-                        enemy.money = random.randint(0, 2)
-                        character.cash = character.cash + enemy.money
-                    elif enemy.name == "Pająk":
-                        enemy.health = 20
-                        score = score + 10
-                        enemy.money = random.randint(0, 3)
-                        character.cash = character.cash + enemy.money
-                    elif enemy.name == "Duży Szczur":
-                        enemy.health = 25
-                        score = score + 13
-                        enemy.money = random.randint(0, 6)
-                        character.cash = character.cash + enemy.money
-                    elif enemy.name == "KRÓL SZCZURÓW":
-                        enemy.health = 150
-                        score = score + 75
-                        enemy.money = random.randint(5, 15)
-                        character.cash = character.cash + enemy.money
-
                     print("%s%sPokonałeś swojego wroga%s" % (fg(15), bg(3), attr(0)), enemy.name)
                     print("%sWygląda na to, że upuścił jakiś przedmiot,%s" % (fg(2), attr(0)), end=" ")
                     lootDrop = loot(enemy)
@@ -413,6 +387,7 @@ def kanaly(score):
                     print(lootDrop)
                     lootEffect(lootDrop, character)
                     print("%s%sotrzymałeś przedmioty o równowartości%s" % (fg(11), bg(232), attr(0)), enemy.money, "%s%smonet%s" % (fg(11), bg(232), attr(0)))
+                    character.cash += enemy.money
                     print("%s%smasz aktualnie%s" % (fg(11), bg(232), attr(0)), character.cash, "%s%smonet%s\n" % (fg(11), bg(232), attr(0)))
                     kanaly(score)
                     return score
@@ -479,8 +454,10 @@ def kanaly(score):
         else:
             print("Nie ma tego numeru w liście. Wybierz inny numerek.")
 
+
 def mroczny_las(score):
-    enemy = enemy_mroczny_las(big_spider, wolf, gigantic_frog, wolf_king)
+    random_enemy = select_enemy(MONSTERS_MROCZNY_LAS)
+    enemy = Enemy(random_enemy)
     print(enemy.name, "się pojawił!")
     print("masz 5 opcje...")
     while enemy.health > 0:
@@ -504,43 +481,24 @@ def mroczny_las(score):
                         print(enemy.name, "uderzył cię za", enemy_hit, "%s\nZostało tobie%s" % (fg(175), attr(0)),
                               character.health, "%spunktów życia.%s" % (fg(175), attr(0)))
                     else:
-                        print("%sWróg nie przebił się przez twoją obronę%s" %(fg(14), attr(0)))
+                        print("%sWróg nie przebił się przez twoją obronę%s" % (fg(14), attr(0)))
                     gameOver(character, score)
 
                 else:
-                    if enemy.name == "Duży pająk":
-                        enemy.health = 50
-                        score = score + 25
-                        enemy.money = random.randint(0, 10)
-                        character.cash = character.cash + enemy.money
-                    elif enemy.name == "Wilk":
-                        enemy.health = 70
-                        score = score + 35
-                        enemy.money = random.randint(0, 14)
-                        character.cash = character.cash + enemy.money
-                    elif enemy.name == "Ogromna żaba":
-                        enemy.health = 100
-                        score = score + 50
-                        enemy.money = random.randint(0, 13)
-                        character.cash = character.cash + enemy.money
-                    elif enemy.name == "WILCZY KRÓL":
-                        enemy.health = 350
-                        score = score + 175
-                        enemy.money = random.randint(5, 23)
-                        character.cash = character.cash + enemy.money
-
                     print("%s%sPokonałeś swojego wroga%s" % (fg(15), bg(3), attr(0)), enemy.name)
                     print("%sWygląda na to, że upuścił jakiś przedmiot,%s" % (fg(2), attr(0)), end=" ")
                     lootDrop = loot(enemy)
                     print("%sdostałeś%s" % (fg(2), attr(0)), end=" ")
                     print(lootDrop)
                     lootEffect(lootDrop, character)
-                    print("%s%sotrzymałeś przedmioty o równowartości%s" % (fg(11), bg(232), attr(0)), enemy.money, "%s%smonet%s" % (fg(11), bg(232), attr(0)))
-                    print("%s%smasz aktualnie%s" % (fg(11), bg(232), attr(0)), character.cash, "%s%smonet%s\n" % (fg(11), bg(232), attr(0)))
+                    print("%s%sotrzymałeś przedmioty o równowartości%s" % (fg(11), bg(232), attr(0)), enemy.money,
+                          "%s%smonet%s" % (fg(11), bg(232), attr(0)))
+                    character.cash += enemy.money
+                    print("%s%smasz aktualnie%s" % (fg(11), bg(232), attr(0)), character.cash,
+                          "%s%smonet%s\n" % (fg(11), bg(232), attr(0)))
                     mroczny_las(score)
                     return score
-                    # return print("masz aktualnie", score, "punktów doświadczenia")
-                    # break
+
             else:
                 print("%s%sNie trafiłeś swojego przeciwnika%s" % (fg(1), bg(232), attr(0)))
                 print(enemy.name, end=" ")
@@ -551,7 +509,7 @@ def mroczny_las(score):
                     print(enemy.name, "uderzył cię za", enemy_crit_hit, "%s\nZostało tobie%s" % (fg(175), attr(0)),
                           character.health, "%spunktów życia.%s" % (fg(175), attr(0)))
                 else:
-                    print("%s%sPrzyfarciłeś. Wróg nie przebił się przez twoją obronę%s" %(fg(14), bg(232), attr(0)))
+                    print("%s%sPrzyfarciłeś. Wróg nie przebił się przez twoją obronę%s" % (fg(14), bg(232), attr(0)))
                 gameOver(character, score)
 
         #### atak magiczny
@@ -572,39 +530,21 @@ def mroczny_las(score):
                         print(enemy.name, "uderzył cię za", enemy_hit, "%s\nZostało tobie%s" % (fg(175), attr(0)),
                               character.health, "%spunktów życia.%s" % (fg(175), attr(0)))
                     else:
-                        print("%sWróg nie przebił się przez twoją obronę%s" %(fg(14), attr(0)))
+                        print("%sWróg nie przebił się przez twoją obronę%s" % (fg(14), attr(0)))
                     gameOver(character, score)
 
                 else:
-                    if enemy.name == "Duży pająk":
-                        enemy.health = 50
-                        score = score + 25
-                        enemy.money = random.randint(0, 10)
-                        character.cash = character.cash + enemy.money
-                    elif enemy.name == "Wilk":
-                        enemy.health = 70
-                        score = score + 35
-                        enemy.money = random.randint(0, 14)
-                        character.cash = character.cash + enemy.money
-                    elif enemy.name == "Ogromna żaba":
-                        enemy.health = 100
-                        score = score + 50
-                        enemy.money = random.randint(0, 13)
-                        character.cash = character.cash + enemy.money
-                    elif enemy.name == "WILCZY KRÓL":
-                        enemy.health = 350
-                        score = score + 175
-                        enemy.money = random.randint(5, 23)
-                        character.cash = character.cash + enemy.money
-
                     print("%s%sPokonałeś swojego wroga%s" % (fg(15), bg(3), attr(0)), enemy.name)
                     print("%sWygląda na to, że upuścił jakiś przedmiot,%s" % (fg(2), attr(0)), end=" ")
                     lootDrop = loot(enemy)
                     print("%sdostałeś%s" % (fg(2), attr(0)), end=" ")
                     print(lootDrop)
                     lootEffect(lootDrop, character)
-                    print("%s%sotrzymałeś przedmioty o równowartości%s" % (fg(11), bg(232), attr(0)), enemy.money, "%s%smonet%s" % (fg(11), bg(232), attr(0)))
-                    print("%s%smasz aktualnie%s" % (fg(11), bg(232), attr(0)), character.cash, "%s%smonet%s\n" % (fg(11), bg(232), attr(0)))
+                    print("%s%sotrzymałeś przedmioty o równowartości%s" % (fg(11), bg(232), attr(0)), enemy.money,
+                          "%s%smonet%s" % (fg(11), bg(232), attr(0)))
+                    character.cash += enemy.money
+                    print("%s%smasz aktualnie%s" % (fg(11), bg(232), attr(0)), character.cash,
+                          "%s%smonet%s\n" % (fg(11), bg(232), attr(0)))
                     mroczny_las(score)
                     return score
                     # return print("masz aktualnie", score, "punktów doświadczenia")
@@ -619,12 +559,12 @@ def mroczny_las(score):
                     print(enemy.name, "uderzył cię za", enemy_crit_hit, "%s\nZostało tobie%s" % (fg(175), attr(0)),
                           character.health, "%spunktów życia.%s" % (fg(175), attr(0)))
                 else:
-                    print("%s%sPrzyfarciłeś. Wróg nie przebił się przez twoją obronę%s" %(fg(14), bg(232), attr(0)))
+                    print("%s%sPrzyfarciłeś. Wróg nie przebił się przez twoją obronę%s" % (fg(14), bg(232), attr(0)))
                 gameOver(character, score)
 
         #### ucieczka
         elif choice == "3":
-            print("Próbujesz uciekać i wrócić do miasta...")
+            print("Próbujesz uciekać i wrócić do miasta")
             runchance = random.randint(1, 100)
             if runchance > 15:
                 print("udało Ci się uciec, uff...")
@@ -634,7 +574,8 @@ def mroczny_las(score):
                 print("nie udało Ci się uciec")
                 print("próbowałeś się bronić, ale niestety dotałeś pełną bułe za", enemy.strenght, "od wroga")
                 character.health = character.health - enemy.strenght
-                print("%sPozostało tobie%s" %(fg(175), attr(0)), character.health, "%spunktów życia%s" %(fg(175), attr(0)))
+                print("%sPozostało tobie%s" % (fg(175), attr(0)), character.health,
+                      "%spunktów życia%s" % (fg(175), attr(0)))
                 gameOver(character, score)
                 mroczny_las(score)
 
@@ -644,13 +585,15 @@ def mroczny_las(score):
             if character.potion >= 1:
                 if character.health < character.max_health - 20:
                     character.health = character.health + 20
-                    print("%sTwój stan zdrowia wynosi obecnie%s" % (fg(175), attr(0)), character.health, "%spunktów życia.%s" % (fg(175), attr(0)))
+                    print("%sTwój stan zdrowia wynosi obecnie%s" % (fg(175), attr(0)), character.health,
+                          "%spunktów życia.%s" % (fg(175), attr(0)))
                     character.potion = character.potion - 1
                     print("%s%sTwój stan mikturek zdrowia:%s" % (fg(170), bg(7), attr(0)), character.potion)
                 elif character.health != character.max_health:
                     character.health = character.max_health
                     character.potion = character.potion - 1
-                    print("%sTwój stan zdrowia wynosi obecnie%s" % (fg(175), attr(0)), character.health, "%spunktów życia.%s" % (fg(175), attr(0)))
+                    print("%sTwój stan zdrowia wynosi obecnie%s" % (fg(175), attr(0)), character.health,
+                          "%spunktów życia.%s" % (fg(175), attr(0)))
                     print("%s%sTwój stan mikturek zdrowia:%s" % (fg(170), bg(7), attr(0)), character.potion)
                 else:
                     print("Jednak napije się kiedy indziej mam pełne życie")
@@ -665,116 +608,12 @@ def mroczny_las(score):
                 #### dorobić może zapis gry przed wyjsciem?
                 sys.exit()
             else:
-               mroczny_las(score)
+                mroczny_las(score)
 
         else:
             print("Nie ma tego numeru w liście. Wybierz inny numerek.")
 
 
-
-
-
-
-root = Tk()
-root.title("Text RPG w tkinter")
-#geometry 1280 x 714
-root.geometry("1280x714+300+150") #ramki GR - 1280, 500, LGR - 1000x500, PGR - 280x500, DR/DR2 - 1280x214
-root.configure(background = "#b3cbcb")
-#root.resizable(0, 0)
-
-#---------------------------Ramki---------------------------------------
-#Górna Ramka
-G_R = Frame(root, width =  1280, height = 500, bd = 3, relief = "groove")
-G_R.place(relx = 0.00, rely = 0.00, anchor = NW)
-#Dolna Ramka
-D_R = Frame(root, width = 1280, height = 214, bd = 3, relief = "groove")
-D_R.place(relx = 0.00, rely = 0.700, anchor = NW)
-#Lewa górna ramka
-G_RL = Frame(G_R, width = 1000, height = 500, bd = 3, relief = "groove")
-G_RL.place(relx = 0.00, rely = 0.00, anchor = NW)
-#Prawa górna ramka
-G_RP = Frame(G_R, width = 280, height = 500, bd = 3, relief = "groove")
-G_RP.place(relx = 0.78, rely = 0.00, anchor = NW)
-#Dolna ramka prawa ale jakoś nie jest prawa przez "Output"
-D_RP = Frame(D_R, width = 1880, height = 214, bd = 3, relief = "groove")
-D_RP.place(relx = 0.314, rely = 0.00, anchor = NW)
-#Dolna ramka lewa
-D_RL = Frame(D_R, width = 400, height = 214, bd = 3, relief = "groove")
-D_RL.place(relx = 0.00, rely = 0.00, anchor = NW)
-
-"""
-podzielić dolną ramkę na lewa/prawa i lewa na dół/góra
-prawo cały tekst co się dzieje w grze
-lewo góra opcje do wyboru
-lewo dół wpisywanie opcji które chce wybrać, chyba że ogarne to jako przycisku w lewo góra
-"""
-
-#output width = 158, height = 12, wrap = WORD, bg = "#c2d6d6"
-Output = Text(D_RP, width = 108, height = 12, wrap = WORD, bg = "#c2d6d6")
-Output.place(relx = 0.00, rely = 0.00, anchor = NW)
-#print(Output)
-#Output.config(yscrollcomands=SCRL.set)
-
-#---------------------------TK dodatki---------------------------------------
-#### Scroll
-#SCRL = Scrollbar(D_R2)
-#SCRL.pack(side = RIGHT, fill = Y)
-#SCRL.config(command = Output.yview)
-
-
-#---------------------------Odwołanie do obrazków---------------------------------------
-health_ikon = PhotoImage(file = r"images/health_iko.png")  # rozmiar 32x32
-strenght_ikon = PhotoImage(file = r"images/strenght_iko.png")  # rozmiar 32x32
-defence_ikon = PhotoImage(file = r"images/defence_iko.png")  # rozmiar 32x32
-magic_ikon = PhotoImage(file = r"images/magic_iko.png")  # rozmiar 32x32
-cash_ikon = PhotoImage(file = r"images/cash_iko.png") #rozmiar 32x32
-potion_ikon = PhotoImage(file = r"images/potion_iko.png")  # rozmiar 32x32
-
-#---------------------------Labele---------------------------------------
-Health_LBL = Label(G_RP, image = health_ikon, compound = LEFT, text = 'Zdrowie:', font = ('arial', 10, 'bold'), width = 130, height = 32, anchor = W).place(relx = 0.0, rely = 0.00, anchor = NW)
-Health_LBL2 = Label(G_RP, text = "HP", font = ('arial', 10, 'bold')).place(relx = 0.37, rely = 0.015, anchor = NW)
-#Health_LBL2['text'] = character.health
-
-Strenght_LBL = Label(G_RP, image = strenght_ikon, compound = LEFT, text = 'Siła:', font = ('arial', 10, 'bold'), width = 130, height = 32, anchor = W).place(relx = 0.0, rely = 0.07, anchor = NW)
-Strenght_LBL2 = Label(G_RP, text = '', font = ('arial', 10, 'bold')).place(relx = 0.26, rely = 0.085, anchor = NW)
-Defence_LBL = Label(G_RP, image = defence_ikon, compound = LEFT, text = 'Obrona:', font = ('arial', 10, 'bold'), width = 130, height = 32, anchor = W).place(relx = 0.0, rely = 0.14, anchor = NW)
-Defence_LBL2 = Label(G_RP, text = '', font = ('arial', 10, 'bold')).place(relx = 0.35, rely = 0.155, anchor = NW)
-Magic_LBL = Label(G_RP, image = magic_ikon, compound = LEFT, text = 'Magia:', font = ('arial', 10, 'bold'), width = 130, height = 32, anchor = W).place(relx = 0.0, rely = 0.21, anchor = NW)
-Magic_LBL2 = Label(G_RP, text = '', font = ('arial', 10, 'bold')).place(relx = 0.32, rely = 0.225, anchor = NW)
-Cash_LBL = Label(G_RP, image = cash_ikon, compound = LEFT, text = 'Stan konta:', font = ('arial', 10, 'bold'), width = 130, height = 32, anchor = W).place(relx = 0.0, rely = 0.28, anchor = NW)
-Cash_LBL2 = Label(G_RP, text = '', font = ('arial', 10, 'bold')).place(relx = 0.42, rely = 0.295, anchor = NW)
-Potion_LBL = Label(G_RP, image = potion_ikon, compound = LEFT, text = 'Stan miksturek:', font = ('arial', 10, 'bold'), width = 130, height = 32, anchor = W).place(relx = 0.0, rely = 0.35, anchor = NW)
-Potion_LBL2 = Label(G_RP, text = '', font = ('arial', 10, 'bold')).place(relx = 0.52, rely = 0.365, anchor = NW)
-
-
-Start_BTN = Button(D_RL, text = "Start").place(relx = 0.0, rely = 0.0, anchor = NW)
-
-#---------------------------aktualizacja statusu---------------------------------------
-#def Health_self(character):
-#    character.max_health
-
-#def Strenght_self(character):
-#    character.strenght
-
-#####################################################
-#wideo odnośnie aktualizacji napisu w labelu czy jakoś tak
-# https://www.youtube.com/watch?v=41lmZPwjmNw
-
-"""
-    max_health = 120
-    health = 120
-    strenght = 7
-    defence = 7
-    magic = 10
-    cash = 0
-    potion = 0
-"""
-
-
-
-
-
-root.mainloop()
 character = heroselect()
 score = 0
 while True:

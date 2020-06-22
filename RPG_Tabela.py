@@ -4,16 +4,8 @@ import random
 
 class Aplikacja:
     def __init__(self, master):
-        """
-        self.character = ''
-        self.health = 0
-        self.strenght = 0
-        self.defence = 0
-        self.magic = 0
-        self.cash = 0
-        self.potion = 0
-        """
         self.character = None
+
         frame_G = Frame(master)
         frame_G.pack(side = TOP)
         frame_D = Frame(master)
@@ -48,10 +40,11 @@ class Aplikacja:
         frame_DRLP.pack(side = RIGHT)
 
         #### koncepcja z przyciskaniem przyciskow
-        self.BTN1 = Entry(frame_DRLL, width=28)
-        self.BTN1.bind('<Return>', self.get)
+        #self.BTN1 = Entry(frame_DRLL, width=28)
+        #self.BTN1.bind('<Return>', self.get)
+        self.BTN1 = Button(frame_DRLL, text="Heroselect", width=23, command=self.hero_select)
         self.BTN1.pack()
-        self.BTN2 = Button(frame_DRLP, text="Heroselect", width=23, command=self.hero_select)
+        self.BTN2 = Button(frame_DRLP, text="BTN2", width=24)
         self.BTN2.pack()
         self.BTN3 = Button(frame_DRLL, text="BTN3", width=23)
         self.BTN3.pack()
@@ -95,6 +88,11 @@ class Aplikacja:
         # SCRL.config(command = Output.yview)
 
         self.health = IntVar()
+        self.strenght = IntVar()
+        self.defence = IntVar()
+        self.magic = IntVar()
+        self.cash = IntVar()
+        self.potion = IntVar()
         # ---------------------------Odwołanie do obrazków---------------------------------------
         cont = Canvas(frame_GRL, width=812, height=442)
         cont.place(relx = 0.00, rely = 0.00, anchor = NW)
@@ -116,22 +114,26 @@ class Aplikacja:
         self.Health_LBL = Label(frame_GRP, image=self.health_ikon, compound=LEFT, text='Zdrowie:', font=('arial', 10, 'bold'), width=130, height=32, anchor=W).place(relx=0.0, rely=0.00, anchor=NW)
         self.Health_LBL2 = Label(frame_GRP, textvariable=self.health, font=('arial', 10, 'bold'))
         self.Health_LBL2.place(relx=0.42, rely=0.015, anchor=NW)
-        # Health_LBL2['text'] = character.health
 
         self.Strenght_LBL = Label(frame_GRP, image=self.strenght_ikon, compound=LEFT, text='Siła:', font=('arial', 10, 'bold'), width=130, height=32, anchor=W).place(relx=0.0, rely=0.07, anchor=NW)
-        self.Strenght_LBL2 = Label(frame_GRP, text='abc', font=('arial', 10, 'bold')).place(relx=0.31, rely=0.085, anchor=NW)
+        self.Strenght_LBL2 = Label(frame_GRP, textvariable=self.strenght, font=('arial', 10, 'bold'))
+        self.Strenght_LBL2.place(relx=0.31, rely=0.085, anchor=NW)
 
         self.Defence_LBL = Label(frame_GRP, image=self.defence_ikon, compound=LEFT, text='Obrona:', font=('arial', 10, 'bold'), width=130, height=32, anchor=W).place(relx=0.0, rely=0.14, anchor=NW)
-        self.Defence_LBL2 = Label(frame_GRP, text='abc', font=('arial', 10, 'bold')).place(relx=0.40, rely=0.155, anchor=NW)
+        self.Defence_LBL2 = Label(frame_GRP, textvariable=self.defence, font=('arial', 10, 'bold'))
+        self.Defence_LBL2.place(relx=0.40, rely=0.155, anchor=NW)
 
         self.Magic_LBL = Label(frame_GRP, image=self.magic_ikon, compound=LEFT, text='Magia:', font=('arial', 10, 'bold'), width=130, height=32, anchor=W).place(relx=0.0, rely=0.21, anchor=NW)
-        self.Magic_LBL2 = Label(frame_GRP, text='abc', font=('arial', 10, 'bold')).place(relx=0.37, rely=0.225, anchor=NW)
+        self.Magic_LBL2 = Label(frame_GRP, textvariable=self.magic, font=('arial', 10, 'bold'))
+        self.Magic_LBL2.place(relx=0.37, rely=0.225, anchor=NW)
 
         self.Cash_LBL = Label(frame_GRP, image=self.cash_ikon, compound=LEFT, text='Stan konta:', font=('arial', 10, 'bold'), width=130, height=32, anchor=W).place(relx=0.0, rely=0.28, anchor=NW)
-        self.Cash_LBL2 = Label(frame_GRP, text='abc', font=('arial', 10, 'bold')).place(relx=0.49, rely=0.295, anchor=NW)
+        self.Cash_LBL2 = Label(frame_GRP, textvariable=self.cash, font=('arial', 10, 'bold'))
+        self.Cash_LBL2.place(relx=0.49, rely=0.295, anchor=NW)
 
         self.Potion_LBL = Label(frame_GRP, image=self.potion_ikon, compound=LEFT, text='Stan miksturek:', font=('arial', 10, 'bold'), width=130, height=32, anchor=W).place(relx=0.0, rely=0.35, anchor=NW)
-        self.Potion_LBL2 = Label(frame_GRP, text='abc', font=('arial', 10, 'bold')).place(relx=0.61, rely=0.365, anchor=NW)
+        self.Potion_LBL2 = Label(frame_GRP, textvariable=self.potion, font=('arial', 10, 'bold'))
+        self.Potion_LBL2.place(relx=0.61, rely=0.365, anchor=NW)
 
     def get(event):
         print(event.get())
@@ -160,12 +162,15 @@ class Aplikacja:
 
         #self.BTN2.configure(text="Wojownik", command=self.warrior)
         #self.BTN2.configure(text="Wojownik")
-        self.BTN2['text'] = "Wojownik"
-        self.BTN2['command'] = lambda: self.create_character(Warrior())
-        self.BTN3['text'] = "Mag"
-        self.BTN3['command'] = lambda: self.create_character(Wizard())
-        self.BTN4['text'] = "łucznik"
-        self.BTN5['text'] = "GM"
+        self.BTN1['text'] = "Wojownik"
+        self.BTN1['command'] = lambda: self.create_character(Warrior())
+        self.BTN2['text'] = "Mag"
+        self.BTN2['command'] = lambda: self.create_character(Wizard())
+        self.BTN3['text'] = "łucznik"
+        self.BTN3['command'] = lambda: self.create_character(Archer())
+        self.BTN4['text'] = "GM"
+        self.BTN4['command'] = lambda: self.create_character(Gm())
+        self.BTN5['text'] = "Wczytaj grę (nie działa)"
         self.BTN6['text'] = " "
         self.BTN7['text'] = " "
         self.BTN8['text'] = " "
@@ -175,15 +180,18 @@ class Aplikacja:
 
     def create_character(self, character):
         self.character = character
-        self.Output.insert(END, "Wybrales {}".format(self.character.name))
+        self.Output.insert(END, "{}".format(self.character.name))
         self.update_char_attributes()
 
-        #selection = self.Output.insert(END, input("1. Wojownik \n2. Mag \n3. łucznik \n4. Wczytaj grę (nie działa)\n"))
-        #selection = input("1. Wojownik \n2. Mag \n3. łucznik \n4. Wczytaj grę (nie działa)\n")
     def update_char_attributes(self):
         self.health.set(self.character.health)
+        self.strenght.set(self.character.strenght)
+        self.defence.set(self.character.defence)
+        self.magic.set(self.character.magic)
+        self.cash.set(self.character.cash)
+        self.potion.set(self.character.potion)
 
-    def game_load():
+    def game_load(self):
         self.Output.insert(END, "Ta funkcja jeszcze nie działa")
         # nie działa
         #data = [character.health, character.strenght, character.defence, character.magic, character.cash, character.potion]
@@ -195,7 +203,7 @@ do_pisania = "witaj\n"
 
 root = Tk()
 root.title("Text RPG w tkinter od podstaw")
-root.iconbitmap("images/ikony/0ikona6.ico")
+root.iconbitmap("images/ikony/ikona6.ico")
 #root.geometry("1280x714+300+150")
 app = Aplikacja(root)
 root.mainloop()

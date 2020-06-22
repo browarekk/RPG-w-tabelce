@@ -38,7 +38,7 @@ def lootEffect(lootDrop, character):
         else:
             print("z tego oręża już nic Ci się nie przyda")
             print("zawsze można spróbować to spieniężyć (5)")
-            character.cash = character.cash + 5
+            character.cash += 5
 
     elif lootDrop == "zbroja treningowa":
         if character.defence < 17:
@@ -50,7 +50,7 @@ def lootEffect(lootDrop, character):
         else:
             print("z tej zbroi już nic Ci się nie przyda")
             print("zawsze można spróbować ją spieniężyć (5)")
-            character.cash = character.cash + 5
+            character.cash += 5
 
     elif lootDrop == "śmieć":
         print("Nic ciekawego nie spadło")
@@ -58,12 +58,12 @@ def lootEffect(lootDrop, character):
 
     elif lootDrop == "kawałek futra":
         print("Dodatkowy hajsik (5)")
-        character.cash = character.cash + 5
+        character.cash += 5
         return character
 
     elif lootDrop == "szczurza korona":
         print("Przyfarciłeś, za to dotaniesz niemałą sumkę (100)")
-        character.cash = character.cash + 100
+        character.cash += 100
         return character
 
     elif lootDrop == "słaby oręż":
@@ -83,7 +83,7 @@ def lootEffect(lootDrop, character):
         else:
             print("z tego oręża już nic Ci się nie przyda")
             print("zawsze można spróbować to spieniężyć (15)")
-            character.cash = character.cash + 15
+            character.cash += 15
 
     elif lootDrop == "słaba zbroja":
         if character.defence < 32:
@@ -95,10 +95,10 @@ def lootEffect(lootDrop, character):
         else:
             print("z tej zbroi już nic Ci się nie przyda")
             print("zawsze można spróbować ją spieniężyć (15)")
-            character.cash = character.cash + 15
+            character.cash += 15
             return character
 
     elif lootDrop == "srebrny kieł":
         print("Przyfarciłeś, za to dotaniesz niemałą sumkę (500)")
-        character.cash = character.cash + 500
+        character.cash += 500
         return character

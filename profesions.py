@@ -7,16 +7,9 @@ class Warrior(object):
     cash = 0
     potion = 0
 
-
     @property
     def name(self):
-        return 'Warrior'
-
-
-#    @property
-#    def health(self):
-#        return self.health
-
+        return "Siła! to był dobry wybór. Będziesz grać wojownikiem.\n"
 
 
 class Wizard(object):
@@ -28,6 +21,10 @@ class Wizard(object):
     cash = 0
     potion = 0
 
+    @property
+    def name(self):
+        return "Intelignecja! Jesteś wyjątkowy. Będziesz grać magiem.\n"
+
 class Archer(object):
     max_health = 120
     health = 120
@@ -37,6 +34,10 @@ class Archer(object):
     cash = 0
     potion = 0
 
+    @property
+    def name(self):
+        return "Zręczność! Balasn między siłą i obroną. Wybrałeś łucznika.\n"
+
 class Gm(object):
     max_health = 1000000
     health = 1000000
@@ -44,4 +45,8 @@ class Gm(object):
     defence = 10000
     magic = 10000
     cash = 10000
-    potion = 0
+    potion = 100
+
+    @property
+    def name(self):
+        return "Witaj twórco gry.\n"
